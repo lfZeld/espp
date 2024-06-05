@@ -1,0 +1,48 @@
+--Abaixo estara Lib da nossa UI
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/7yhx/kwargs-Ui-Library/main/Ui%20Library.lua"))()
+
+local UI = Lib:Create{
+    Theme = "Dark", -- or "Light"
+    Size = UDim2.new(0, 555, 0, 400) -- default
+ }
+ 
+ local Main = UI:Tab{
+    Name = "Inicio"
+ }
+ 
+ local Divider = Main:Divider{
+    Name = "Inicio Shit"
+ }
+ 
+ local QuitDivider = Main:Divider{
+    Name = "Sair"
+ }
+
+ -- Script para Arsenal no Roblox
+local player = game.Players.LocalPlayer
+local teamColor = player.TeamColor
+
+-- Função para verificar se um jogador está na equipe inimiga
+local function isEnemy(player)
+    return player.TeamColor ~= teamColor
+end
+
+-- Função para marcar inimigos com FOV
+local function markEnemies()
+    for _, enemy in pairs(game.Players:GetPlayers()) do
+        if isEnemy(enemy) then
+            -- Marque o jogador aqui (por exemplo, com uma seta ou outro indicador visual)
+            print("Inimigo detectado: " .. enemy.Name)
+        end
+    end
+end
+
+-- Ative o script
+local enabled = true
+
+-- Loop principal
+while enabled do
+    markEnemies()
+    wait(1) -- Aguarde 1 segundo antes de verificar novamente
+end
